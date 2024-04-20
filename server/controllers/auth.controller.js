@@ -27,8 +27,10 @@ export const signUp = async (req, res) => {
         generateTokenAndSetCookie(user.id, res);
 
         return res.status(201).json({
-            user,
-            "message": "user created"
+            _id: user._id,
+            fullName,
+            username,
+            profilePic
         });
 
     } catch (error) {
