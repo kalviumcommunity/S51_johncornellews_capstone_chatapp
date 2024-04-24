@@ -6,6 +6,7 @@ import { connectDB } from "./db/connectDB.js";
 import cors from "cors"
 import cookieParser from "cookie-parser";
 import msgRouter from "./routes/message.routes.js";
+import userRouter from "./routes/user.routes.js";
 dotenv.config()
 const port = process.env.PORT || 777
 app.use(cookieParser())
@@ -14,6 +15,8 @@ app.use(express.json())
 
 app.use("/api/auth", authRouter)
 app.use("/api/message", msgRouter)
+app.use("/api/users",userRouter)
+
 const db = async () => {
     try {
         await connectDB()
