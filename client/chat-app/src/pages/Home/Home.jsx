@@ -1,11 +1,13 @@
-import React from 'react'
+import Sidebar from "../../components/Sidebar/Sidebar";
+
 
 const Home = () => {
   return (
-    <div>
-      
+    <div className="flex">
+    
+      <Sidebar />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
