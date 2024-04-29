@@ -1,5 +1,5 @@
 
-import { FaUserNinja } from "react-icons/fa6";
+import { FaUserNinja } from "react-icons/fa";
 
 const Conversation = () => {
   return (
