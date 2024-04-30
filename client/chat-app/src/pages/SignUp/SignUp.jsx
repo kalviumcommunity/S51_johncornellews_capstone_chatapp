@@ -1,6 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import useSignUp from "../../hooks/useSignUp";
+import { Link } from "react-router-dom"
 
 const SignUp = () => {
   const {
@@ -9,12 +11,15 @@ const SignUp = () => {
     handleSubmit,
     watch,
   } = useForm();
-  const url = "http://localhost:7777/api/auth/signup";
+
+  const { signup, loading } = useSignUp();
   const signUp = async (data) => {
     console.log(data);
     try {
-      const res = await axios.post(url, data);
+      console.log(loading);
+      const res = await signup(data);
       console.log(res);
+      console.log(loading);
     } catch (error) {
       console.log(error.message);
     }
@@ -122,6 +127,7 @@ const SignUp = () => {
           {errors.gender && (
             <p className="text-red-500">{errors.gender.message}</p>
           )}
+            <Link style={{color: "blue"}} to="/login">Already have an account? </Link>
           <div className="flex justify-around items-center p-6">
             <button type="submit" className="btn btn-primary btn-active">
               Sign Up
