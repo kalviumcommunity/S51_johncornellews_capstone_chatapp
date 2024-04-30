@@ -1,6 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import useLogin from "../../hooks/useLogin";
 
 const Login = () => {
   const {
@@ -8,10 +10,12 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  const { login, loading } = useLogin()
   const url = "http://localhost:7777/api/auth/login";
-  const login = async (data) => {
+  const loginUser = async (data) => {
     try {
-      const res = await axios.post(url, data);
+      const res = await login(data);
       console.log(res);
     } catch (error) {
       console.log(error.message);
@@ -21,7 +25,7 @@ const Login = () => {
     <div>
       <div className="flex flex-col items-center min-w-96 mx-auto m-1 mt-10">
         <h1 className="">Login to Chat app</h1>
-        <form onSubmit={handleSubmit(login)}>
+        <form onSubmit={handleSubmit(loginUser)}>
           <label className="input input-bordered flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -69,12 +73,12 @@ const Login = () => {
             <p className="text-red-500">{errors.password.message}</p>
           )}
           <div className="flex justify-around items-center p-6">
-            <button type="submit" className="btn btn-primary btn-active">
+            <button type="submit" className="btn bg-green-800 btn-active">
               Login
             </button>
-            <a className="text-blue-400 block" href="#">
-              new User
-            </a>
+            <Link style={{ color: "blue" }} to="/signup">
+              New user ?
+            </Link>
           </div>
         </form>
       </div>
