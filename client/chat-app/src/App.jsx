@@ -4,12 +4,13 @@ import SignUp from "./pages/SignUp/SignUp";
 import Home from "./pages/Home/Home";
 import { Route, Routes } from "react-router-dom";
 import { AuthContext } from "./context/Authcontext";
+import ProtectRoute from "./security/ProtectRoute";
 
 const App = () => {
   const { authUser } = useContext(AuthContext);
   useEffect(() => {
-    console.log(authUser)
-  }, [authUser])
+    console.log(authUser);
+  }, [authUser]);
   return (
     <div
       style={{
@@ -21,7 +22,9 @@ const App = () => {
       }}
     >
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route element={<ProtectRoute />}>
+          <Route path="/" element={<Home />} />
+        </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
