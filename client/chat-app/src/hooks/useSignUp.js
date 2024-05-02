@@ -11,7 +11,7 @@ const useSignUp = () => {
     try {
       const res = await axios.post(url, data);
       console.log(res.data);
-      localStorage.setItem(JSON.stringify(res.data), "user");
+      localStorage.setItem("user", JSON.stringify(res.data));
       setAuthUser(res.data);
     } catch (error) {
       console.log(error.message);
