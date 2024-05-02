@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Home from "./pages/Home/Home";
 import { Route, Routes } from "react-router-dom";
+import { AuthContext } from "./context/Authcontext";
 
 const App = () => {
+  const { authUser } = useContext(AuthContext);
+  useEffect(() => {
+    console.log(authUser)
+  }, [authUser])
   return (
     <div
       style={{
