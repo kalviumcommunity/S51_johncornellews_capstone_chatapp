@@ -3,6 +3,7 @@ import User from "../models/user.model.js";
 export const getUsers = async (req, res) => {
     const userId = req.user._id
     try {
+        console.log("started in user controller")
         const users = await User.find({
             _id: { $ne: userId }
         }).select("-password")
