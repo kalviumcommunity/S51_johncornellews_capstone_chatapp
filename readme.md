@@ -13,3 +13,6 @@ Welcome to our Chat App repository! This is a real-time messaging application bu
 - **React.js:** Frontend library for building user interfaces.
 - **Node.js:** JavaScript runtime environment for executing server-side code.
 - **Socket.io:** Real-time bidirectional event-based communication library.
+- **Daisy UI:** An accessible and reusable component library built on Tailwind CSS for simplified UI development.
+- **Tailwind CSS:** A utility-first CSS framework for rapid and custom design without traditional CSS.
+- **Zustand:** Lightweight state management for React with a minimalistic API and declarative approach.
