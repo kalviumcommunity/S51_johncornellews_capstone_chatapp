@@ -11,7 +11,7 @@ const Messages = () => {
     const get_messages = async () => {
       if (selectedConversation === null) return;
       const res = await axios.get(
-        "http://localhost:7777/api/message/get/6634ac183409a81a24d5da4f",
+        `http://localhost:7777/api/message/get/${selectedConversation}`,
         { withCredentials: true }
       );
       setMessages(res.data.messages);

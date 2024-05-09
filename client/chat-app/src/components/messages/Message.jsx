@@ -10,7 +10,7 @@ const Message = ({ message }) => {
     <>
       <div
         className={
-          current_user_id == message.receiverId
+          current_user_id === message.receiverId
             ? `chat chat-start`
             : "chat chat-end"
         }
