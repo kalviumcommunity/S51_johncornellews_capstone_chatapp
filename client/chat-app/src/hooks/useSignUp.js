@@ -1,13 +1,12 @@
 import axios from "axios";
-import { useContext, useState } from "react";
-import { AuthContext } from "../context/Authcontext";
+import { useState } from "react";
 import Cookies from "js-cookie";
+import { useStore } from "../app/store.js";
 
 const useSignUp = () => {
   const url = "http://localhost:7777/api/auth/signup";
   const [loading, setLoading] = useState(false);
-  const { setAuthUser } = useContext(AuthContext);
-
+  const setAuthUser = useStore().setAuthUser;
   const signup = async (data) => {
     setLoading(true);
     try {

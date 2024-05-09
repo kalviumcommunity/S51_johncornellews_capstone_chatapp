@@ -1,11 +1,9 @@
-import { useContext } from "react";
 import { Outlet, Navigate } from "react-router-dom";
-import { AuthContext } from "../context/Authcontext";
+import { useStore } from "../app/store.js";
 
 const ProtectRoute = () => {
-  const { authUser } = useContext(AuthContext);
-
-  console.log(authUser, "protect")
+  const authUser = useStore().authUser;
+  console.log(authUser, "protect");
   return authUser ? <Outlet /> : <Navigate to="/login" />;
 };
 
