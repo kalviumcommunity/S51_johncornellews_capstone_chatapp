@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../context/Authcontext";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useStore } from "../app/store.js";
 
 const useLogin = () => {
   const nav = useNavigate();
   const url = "http://localhost:7777/api/auth/login";
-  const { setAuthUser } = useContext(AuthContext);
+  const setAuthUser = useStore().setAuthUser; // Acces
   const [loading, setLoading] = useState(false);
   const login = async (data) => {
     setLoading(true);
