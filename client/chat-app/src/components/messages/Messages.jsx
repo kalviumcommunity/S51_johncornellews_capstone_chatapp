@@ -10,12 +10,16 @@ const Messages = () => {
   useEffect(() => {
     const get_messages = async () => {
       if (selectedConversation === null) return;
-      const res = await axios.get(
-        `http://localhost:7777/api/message/get/${selectedConversation}`,
-        { withCredentials: true }
-      );
-      setMessages(res.data.messages);
-      console.log(res);
+      try {
+        const res = await axios.get(
+          `http://localhost:7777/api/message/get/${selectedConversation}`,
+          { withCredentials: true }
+        );
+        setMessages(res.data.messages);
+      } catch (error) {
+        console.log(error.message);
+        setMessages([]);
+      }
     };
     get_messages();
   }, [selectedConversation]);
