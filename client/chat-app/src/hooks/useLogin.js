@@ -7,7 +7,7 @@ import { useStore } from "../app/store.js";
 const useLogin = () => {
   const nav = useNavigate();
   const url = "http://localhost:7777/api/auth/login";
-  const setAuthUser = useStore().setAuthUser; // Acces
+  const setAuthUser = useStore().setAuthUser; 
   const [loading, setLoading] = useState(false);
   const login = async (data) => {
     setLoading(true);

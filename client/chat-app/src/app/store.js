@@ -6,4 +6,9 @@ export const useStore = create((set) => ({
     set({
       authUser: data,
     }),
+  selectedConversation: null,
+  setSelectedConversation: (id) =>
+    set({
+      selectedConversation: id,
+    }),
 }));
