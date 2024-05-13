@@ -1,19 +1,21 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { FaSearchDollar } from "react-icons/fa";
+import React, { useState } from "react";
 
-const Search = () => {
-  const {
-    register,
-    formState: { errors },
-  } = useForm();
+const Search = ({ setFilteredUsers, users }) => {
+  const handleSearch = (e) => {
+    const term = e.target.value.toLowerCase();
+    console.log(term);
+    if (term.trim() == "") {
+      setFilteredUsers(users);
+      return;
+    }
+    const filteredUsers = users.filter((user) =>
+      user.fullName.toLowerCase().includes(term) ? true : false
+    );
+    setFilteredUsers(!filteredUsers ? "No User Found" : filteredUsers);
+  };
+
   return (
-    <form className="flex items-center gap-2">
-      <input type="text" placeholder="Search users" />
-      <button className="btn btn-circle">
-        <FaSearchDollar />
-      </button>
-    </form>
+    <input type="text" placeholder="Search users" onChange={handleSearch} />
   );
 };
 
