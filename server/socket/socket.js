@@ -16,13 +16,15 @@ const onlineUsers = {};
 io.on("connection", (socket) => {
   console.log("user id: ", socket.id);
   const userID = socket.handshake.query.userID;
-  if (userID) onlineUsers[userID] = socket.id;
-  socket.emit("onlineUsers", Object.keys(onlineUsers));
+  if (userID) {
+    onlineUsers[userID] = socket.id;
+    io.emit("onlineUsers", Object.keys(onlineUsers)); 
+  }
   socket.on("disconnect", () => {
     console.log("user disconnected");
-    delete onlineUsers[socket.id];
-    socket.emit("onlineUsers", Object.keys(onlineUsers));
+    delete onlineUsers[userID];
+    io.emit("onlineUsers", Object.keys(onlineUsers));
   });
 });
 
-export { app, server, io };
+export { app, server, io, onlineUsers };
