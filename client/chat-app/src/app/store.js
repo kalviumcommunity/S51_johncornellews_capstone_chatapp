@@ -11,4 +11,14 @@ export const useStore = create((set) => ({
     set({
       selectedConversation: id,
     }),
+  onlineUsers: [],
+  setOnlineUsers: (users) =>
+    set({
+      onlineUsers: users,
+    }),
+  socket: null,
+  setSocket: (sock) =>
+    set({
+      socket: sock,
+    }),
 }));
