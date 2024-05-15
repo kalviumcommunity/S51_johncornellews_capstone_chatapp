@@ -8,11 +8,17 @@ const Home = () => {
   const setSocket = useStore((state) => state.setSocket);
   const authUser = useStore((state) => state.authUser);
   const socket = useStore((state) => state.socket);
-
-  useEffect(() => {
+  const setOnlineUsers = useStore((state) => state.setOnlineUsers);
+  const onlineUsers = useStore((state) => state.onlineUsers);
+  const runner = () => {
     if (authUser) {
-      const socket = io.connect("http://localhost:7777"); // Corrected
+      const socket = io.connect("http://localhost:7777", {
+        query: {
+          userID: authUser._id,
+        },
+      });
       setSocket(socket);
+      socket.on("onlineUsers", (users) => setOnlineUsers(users));
       return () => socket.close();
     } else {
       if (socket) {
@@ -20,8 +26,13 @@ const Home = () => {
         setSocket(null);
       }
     }
+  }
+  useEffect(() => {
+    console.log(authUser, "authuser")
+    return () => runner()
   }, [authUser]);
 
+  useEffect(() => console.log(onlineUsers, "onlineUsers"), [onlineUsers]);
   const selectedConversation = useStore((state) => state.selectedConversation);
   useEffect(() => {
     console.log(selectedConversation);

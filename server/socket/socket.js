@@ -12,10 +12,16 @@ const io = new Server(server, {
   },
 });
 
+const onlineUsers = {};
 io.on("connection", (socket) => {
   console.log("user id: ", socket.id);
+  const userID = socket.handshake.query.userID;
+  if (userID) onlineUsers[userID] = socket.id;
+  socket.emit("onlineUsers", Object.keys(onlineUsers));
   socket.on("disconnect", () => {
     console.log("user disconnected");
+    delete onlineUsers[socket.id];
+    socket.emit("onlineUsers", Object.keys(onlineUsers));
   });
 });
 

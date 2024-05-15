@@ -2,10 +2,12 @@ import { FaUserNinja } from "react-icons/fa";
 import { useStore } from "../../app/store";
 
 const Conversation = ({ user }) => {
-  const setSelectedConversation  = useStore().setSelectedConversation;
+  const setSelectedConversation = useStore().setSelectedConversation;
   const handleSelect = (id) => {
     setSelectedConversation(id);
   };
+  const onlineUsers = useStore().onlineUsers;
+  const isOnline = onlineUsers.includes(user._id);
   return (
     <>
       <div
@@ -13,7 +15,7 @@ const Conversation = ({ user }) => {
         onClick={() => handleSelect(user._id)}
       >
         <div className="flex gap-2 items-center py-2 px-1">
-          <div className="avatar online">
+          <div className={`avatar  ${isOnline ? "online" : "offline"} `}>
             <img style={{ maxHeight: "30px" }} src={user.profilePic} />
           </div>
         </div>
