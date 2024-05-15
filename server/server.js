@@ -1,5 +1,4 @@
 import express from "express";
-const app = express();
 import dotenv from "dotenv";
 import { authRouter } from "./routes/auth.routes.js";
 import { connectDB } from "./db/connectDB.js";
@@ -7,6 +6,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import msgRouter from "./routes/message.routes.js";
 import userRouter from "./routes/user.routes.js";
+import { app, server } from "./socket/socket.js";
 dotenv.config();
 const port = process.env.PORT || 777;
 app.use(cookieParser());
@@ -31,7 +31,7 @@ app.use("/api/users", userRouter);
 const db = async () => {
   try {
     await connectDB();
-    app.listen(port, () => {
+    server.listen(port, () => {
       console.log("server is being listened on port", port);
     });
   } catch (error) {
