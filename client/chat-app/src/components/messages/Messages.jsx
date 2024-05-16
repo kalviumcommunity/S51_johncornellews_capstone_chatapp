@@ -1,19 +1,21 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Message from "./Message";
 import { useStore } from "../../app/store";
 import useGetMessages from "../../hooks/useGetMessages";
+import { useListenMessages } from "../../hooks/useListenMessages";
 
 const Messages = () => {
   const selectedConversation = useStore((state) => state.selectedConversation);
-  const [messages, setMessages] = useState(null);
   const { getMessages } = useGetMessages();
-
+  const messages = useStore().messages;
+  const setMessages = useStore().setMessages;
+  useListenMessages();
   useEffect(() => {
     const fetchData = async () => {
       if (selectedConversation === null) return;
       try {
         const res = await getMessages();
-        setMessages(res || []); // Handling the case when res is null
+        setMessages(res || []);
       } catch (error) {
         console.log(error.message);
         setMessages([]);

@@ -21,4 +21,8 @@ export const useStore = create((set) => ({
     set({
       socket: sock,
     }),
+  messages: [],
+  setMessages: (ms) => set({
+    messages: ms
+  })
 }));
