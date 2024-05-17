@@ -17,12 +17,16 @@ export const getUsers = async (req, res) => {
 export const updateUser = async (req, res) => {
   const userId = req.user._id;
   const { data } = req.body;
-
   try {
     const updatedUser = await User.findByIdAndUpdate(userId, data, {
       new: true,
     });
-    res.send(updatedUser);
+    res.status(200).json({
+      _id: updatedUser._id,
+      fullName: updatedUser.fullName,
+      username: updatedUser.username,
+      profilePic: updatedUser.profilePic,
+    });
   } catch (error) {
     console.error(error.message); // Use console.error for errors
     res.status(500).send({ error: "Error updating user" }); // Send error response

@@ -7,6 +7,7 @@ import axios from "axios";
 
 const Profile = () => {
   const authUser = useStore((state) => state.authUser);
+  const setAuthUser = useStore().setAuthUser
   const modRef = useRef();
   const {
     register,
@@ -36,7 +37,9 @@ const Profile = () => {
         { data },
         { withCredentials: true }
       );
-      console.log(res);
+      console.log(res)
+      localStorage.setItem("user", JSON.stringify(res.data));
+      setAuthUser(res.data)
     } catch (error) {
       console.log(error.message);
     }
