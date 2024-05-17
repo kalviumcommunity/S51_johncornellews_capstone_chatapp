@@ -5,6 +5,7 @@ export const protectRoute = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
     const secretKey = process.env.JWT_SECRET;
+    console.log(token, "token from protect")
     if (!token)
       return res
         .status(401)

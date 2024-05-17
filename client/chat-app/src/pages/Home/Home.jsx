@@ -9,7 +9,6 @@ const Home = () => {
   const authUser = useStore((state) => state.authUser);
   const socket = useStore((state) => state.socket);
   const setOnlineUsers = useStore((state) => state.setOnlineUsers);
-  const onlineUsers = useStore((state) => state.onlineUsers);
   const runner = () => {
     if (authUser) {
       const socket = io.connect("http://localhost:7777", {
@@ -26,17 +25,13 @@ const Home = () => {
         setSocket(null);
       }
     }
-  }
+  };
   useEffect(() => {
-    console.log(authUser, "authuser")
-    return () => runner()
+    console.log(authUser, "authuser");
+    return () => runner();
   }, [authUser]);
 
-  useEffect(() => console.log(onlineUsers, "onlineUsers"), [onlineUsers]);
   const selectedConversation = useStore((state) => state.selectedConversation);
-  useEffect(() => {
-    console.log(selectedConversation);
-  }, [selectedConversation]);
 
   return (
     <>

@@ -10,5 +10,5 @@ export const useListenMessages = () => {
     socket?.on("newMessage", (newMessage) => {
       setMessages([...messages, newMessage]);
     });
-  }, [socket, setMessages]);
+  }, [socket, messages, setMessages]);
 };
