@@ -3,9 +3,12 @@ import Conversations from "./Conversations";
 import LogoutButton from "./LogoutButton";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useStore } from "../../app/store";
+import Profile from "./Profile";
 
 const Sidebar = () => {
   const [users, setUsers] = useState(null);
+  const authUser = useStore((state) => state.authUser);
   const [filteredUsers, setFilteredUsers] = useState(null);
   const getUsers = async () => {
     const res = await axios.get("http://localhost:7777/api/users/getusers", {
@@ -23,6 +26,7 @@ const Sidebar = () => {
 
   return (
     <div>
+      <Profile />
       <Search users={users} setFilteredUsers={setFilteredUsers} />
       <div className="divider m-0 p-0" />
       <Conversations users={filteredUsers} />
