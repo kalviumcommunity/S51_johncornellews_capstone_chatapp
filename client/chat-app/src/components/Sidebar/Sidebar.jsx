@@ -7,17 +7,16 @@ import { useStore } from "../../app/store";
 import Profile from "./Profile";
 
 const Sidebar = () => {
-  const [users, setUsers] = useState(null);
-  const authUser = useStore((state) => state.authUser);
-  const [filteredUsers, setFilteredUsers] = useState(null);
+  const users = useStore().users;
+  const filteredUsers = useStore().filteredUsers;
+  const setFilteredUsers = useStore().setFilteredUsers;
+  const setUsers = useStore().setUsers;
   const getUsers = async () => {
     const res = await axios.get("http://localhost:7777/api/users/getusers", {
       withCredentials: true,
     });
-    setTimeout(() => {
-      setUsers(res.data);
-      setFilteredUsers(res.data)
-    }, 300);
+    setUsers(res.data);
+    setFilteredUsers(res.data);
     console.log(res.data);
   };
   useEffect(() => {

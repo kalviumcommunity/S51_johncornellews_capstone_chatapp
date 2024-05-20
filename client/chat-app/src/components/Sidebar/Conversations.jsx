@@ -1,7 +1,10 @@
 import Conversation from "./Conversation";
 import ChatSkeleton from "../../skeletons/ChatSkeleton";
+import { useStore } from "../../app/store";
 
-const Conversations = ({ users }) => {
+const Conversations = () => {
+  const users = useStore().users;
+
   return (
     <>
       {users === "No User Found" ? (

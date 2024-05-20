@@ -61,3 +61,27 @@ export const getMessages = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+export const getLatestMessages = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    // Find all conversations where the user is a participant
+    const conversations = await Conversation.find({
+      participants: userId,
+    }).populate("messages");
+
+    // Extract latest message from each conversation
+    const latestMessages = conversations.map((conversation) => {
+      // Sort messages by timestamp in descending order
+      conversation.messages.sort((a, b) => b.createdAt - a.createdAt);
+      // Return the first message (latest message) or null if there are no messages
+      return conversation.messages.length > 0 ? conversation.messages[0] : null;
+    });
+
+    res.status(200).json(latestMessages);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: "Failed to get latest messages" });
+  }
+};

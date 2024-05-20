@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useStore } from "../../app/store";
 
-const Search = ({ setFilteredUsers, users }) => {
+const Search = () => {
+  const users = useStore().users;
+   const setFilteredUsers = useStore().setFilteredUsers;
+  
   const handleSearch = (e) => {
     const term = e.target.value.toLowerCase();
     console.log(term);

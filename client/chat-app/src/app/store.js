@@ -22,7 +22,23 @@ export const useStore = create((set) => ({
       socket: sock,
     }),
   messages: [],
-  setMessages: (ms) => set({
-    messages: ms
-  })
+  setMessages: (ms) =>
+    set({
+      messages: ms,
+    }),
+  latestMessages: {},
+  setLatestMessage: (newMessage, friendID) =>
+    set((state) => ({
+      latestMessages: { ...state.latestMessages, [friendID]: newMessage },
+    })),
+  users: [],
+  setUsers: (users) =>
+    set({
+      users: users,
+    }),
+  filteredUsers: [],
+  setFilteredUsers: (users) =>
+    set({
+      filteredUsers: users,
+    }),
 }));

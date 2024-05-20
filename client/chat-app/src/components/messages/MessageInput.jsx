@@ -8,7 +8,6 @@ const MessageInput = () => {
   const {
     register,
     reset, // Corrected to reset instead of resetField
-    formState: { errors },
     handleSubmit,
   } = useForm();
 
