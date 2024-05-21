@@ -1,16 +1,21 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import Cookies from "js-cookie"
+import { useNavigate } from "react-router-dom";
 
 const useLogout = () => {
   const url = "http://localhost:7777/api/auth/logout";
   const [loading, setLoading] = useState(false);
+  const nav = useNavigate()
   const logout = async () => {
     setLoading(true);
     try {
-        console.log("I am workinf")
+      console.log("I am workinf");
       const res = await axios.get(url);
-      localStorage.removeItem("user")
+      localStorage.removeItem("user");
+      Cookies.remove("jwt")
+      nav("/login")
       console.log("Logged out", res.data);
     } catch (err) {
       console.error(err);
