@@ -11,6 +11,10 @@ export const useStore = create((set) => ({
     set({
       selectedConversation: id,
     }),
+  selectedUser: null,
+  setSelectedUser: (fullName) => set({
+    selectedUser: fullName,
+  }),
   onlineUsers: [],
   setOnlineUsers: (users) =>
     set({
