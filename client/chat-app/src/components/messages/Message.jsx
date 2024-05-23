@@ -6,6 +6,8 @@ const Message = ({ message }) => {
   const current_user_id =
     authUser._id || JSON.parse(localStorage.getItem("user"))._id;
 
+  const formattedTime = new Date(message.createdAt).toLocaleString();
+
   return (
     <>
       <div
@@ -17,7 +19,7 @@ const Message = ({ message }) => {
       >
         <div className="chat-bubble">{message.message}</div>
         <div className="chat-footer">
-          <span>Seen : 12:56</span>
+          <span>{formattedTime}</span>
         </div>
       </div>
     </>
