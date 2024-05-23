@@ -2,11 +2,13 @@ import axios from "axios";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import { useStore } from "../app/store.js";
+import { useNavigate } from "react-router-dom";
 
 const useSignUp = () => {
   const url = "http://localhost:7777/api/auth/signup";
   const [loading, setLoading] = useState(false);
   const setAuthUser = useStore().setAuthUser;
+  const nav = useNavigate()
   const signup = async (data) => {
     setLoading(true);
     try {
@@ -18,6 +20,7 @@ const useSignUp = () => {
       // Set user data in localStorage
       localStorage.setItem("user", JSON.stringify(res.data));
       setAuthUser(res.data);
+      nav("/")
     } catch (error) {
       console.log(error.message);
     } finally {
