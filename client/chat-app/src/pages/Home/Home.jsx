@@ -61,7 +61,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex font-mono">
         <Sidebar />
         <div className="divider-vertical m-0 p-0" />
         {!selectedConversation ? (
