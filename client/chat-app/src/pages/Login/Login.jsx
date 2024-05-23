@@ -12,7 +12,6 @@ const Login = () => {
   } = useForm();
 
   const { login, loading } = useLogin()
-  const url = "http://localhost:7777/api/auth/login";
   const loginUser = async (data) => {
     try {
       const res = await login(data);

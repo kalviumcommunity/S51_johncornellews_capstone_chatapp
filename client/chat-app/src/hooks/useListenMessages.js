@@ -13,7 +13,7 @@ export const useListenMessages = () => {
       const id =
         newMessage.senderId !== authUser._id
           ? newMessage.senderId
-          : newMessage.receiverId;
+          : newMessage.receiverId; 
       setLatestMessage(newMessage, id); 
     });
   }, [socket, messages, setMessages, setLatestMessage]);

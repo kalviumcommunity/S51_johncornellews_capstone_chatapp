@@ -23,13 +23,14 @@ export const signUp = async (req, res) => {
       profilePic,
     });
 
-    generateTokenAndSetCookie(user.id, res);
+    const token = generateTokenAndSetCookie(user.id, res);
 
     return res.status(201).json({
       _id: user._id,
       fullName,
       username,
       profilePic,
+      token
     });
   } catch (error) {
     console.log(error);
