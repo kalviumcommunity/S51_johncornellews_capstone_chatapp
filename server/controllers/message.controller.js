@@ -96,8 +96,7 @@ export const updateMessage = async (req, res) => {
       { new: true }
     );
     res.json({ newMessage });
-    res.send(id);
   } catch (error) {
-    console.log(error.message);
+    res.status(500).json({ error: error.message });
   }
 };
