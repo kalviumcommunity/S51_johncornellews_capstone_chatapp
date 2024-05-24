@@ -100,3 +100,17 @@ export const updateMessage = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+export const deleteMessage = async (req, res) => {
+  try {
+    const { id: _id } =req.params
+    const deletedMessage = await Message.findByIdAndDelete(_id)
+    return res.json({
+      deletedMessage
+    })
+  } catch (error) {
+    res.status(500).json({
+      error: error.message
+    })
+  }
+}

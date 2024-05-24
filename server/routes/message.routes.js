@@ -1,5 +1,6 @@
 import express from "express";
 import {
+    deleteMessage,
   getLatestMessages,
   getMessages,
   sendMessage,
@@ -13,5 +14,7 @@ msgRouter.post("/send/:id", protectRoute, sendMessage);
 msgRouter.get("/get/:id", protectRoute, getMessages);
 msgRouter.get("/getlatestmsg/:id", protectRoute, getLatestMessages);
 msgRouter.patch("/updatemsg/:id", protectRoute, updateMessage);
+msgRouter.delete("/deletemsg/:id", protectRoute, deleteMessage)
+
 
 export default msgRouter;
