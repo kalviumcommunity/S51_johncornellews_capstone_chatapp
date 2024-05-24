@@ -85,3 +85,19 @@ export const getLatestMessages = async (req, res) => {
     res.status(500).json({ error: "Failed to get latest messages" });
   }
 };
+
+export const updateMessage = async (req, res) => {
+  try {
+    const { id: _id } = req.params;
+    const message = req.body.message;
+    const newMessage = await Message.findOneAndUpdate(
+      { _id },
+      { message },
+      { new: true }
+    );
+    res.json({ newMessage });
+    res.send(id);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
