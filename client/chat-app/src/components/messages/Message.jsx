@@ -10,17 +10,28 @@ const Message = ({ message }) => {
   const createdAt = new Date(message.createdAt);
   const updatedAt = new Date(message.updatedAt);
 
-  const formattedTime = createdAt;
-  const formattedTime2 = updatedAt;
+  // Format the creation and update times
+  const formattedTime = format(createdAt, "PPpp");
+  const formattedTime2 = format(updatedAt, "PPpp");
 
+  // Function to display time based on how recent it is
   const displayTime = (date) => {
-    const diffInHours = (new Date() - date) / (1000 * 60 * 60);
-    if (diffInHours < 1) {
-      // returns an human readable string 
+    const diffInHours = Math.floor((new Date() - date) / (1000 * 60 * 60));
+    if (diffInHours < 3) {
+      // Return a human-readable string if within 3 hours
       return `${formatDistanceToNow(date, { addSuffix: true })}`;
     }
-    // normal date formatting
+    // Return formatted date if more than 3 hours
     return format(date, "PPpp");
+  };
+
+  // Component for displaying the "edited" label
+  const EditedLabel = ({ isEdited }) => {
+    return isEdited ? (
+      <p style={{ textAlign: "right" }} className="text-red-400">
+        edited
+      </p>
+    ) : null;
   };
 
   return (
@@ -31,15 +42,10 @@ const Message = ({ message }) => {
     >
       <div className="chat-bubble">
         {message.message}
-        {/* .getTime returns the exact mille seconds of the date  */}
-        {formattedTime.getTime() !== formattedTime2.getTime() && (
-          <p style={{ textAlign: "right" }} className="text-red-400">
-            edited
-          </p>
-        )}
+        <EditedLabel isEdited={createdAt.getTime() !== updatedAt.getTime()} />
       </div>
       <div className="chat-footer">
-        <p>{displayTime(formattedTime2)}</p>
+        <p>{displayTime(updatedAt)}</p>
       </div>
     </div>
   );
