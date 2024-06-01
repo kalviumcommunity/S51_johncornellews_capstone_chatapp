@@ -2,17 +2,17 @@ import React from "react";
 import { useStore } from "../../app/store";
 import { format, formatDistanceToNow } from "date-fns";
 
-const Message = ({ message }) => {
+const Message = ({
+  message,
+  updateDialogRef,
+}) => {
   const authUser = useStore().authUser;
+  const setMessageTobeEdited = useStore().setMessageTobeEdited
   const current_user_id =
     authUser._id || JSON.parse(localStorage.getItem("user"))._id;
 
   const createdAt = new Date(message.createdAt);
   const updatedAt = new Date(message.updatedAt);
-
-  // Format the creation and update times
-  const formattedTime = format(createdAt, "PPpp");
-  const formattedTime2 = format(updatedAt, "PPpp");
 
   // Function to display time based on how recent it is
   const displayTime = (date) => {
@@ -33,9 +33,15 @@ const Message = ({ message }) => {
       </p>
     ) : null;
   };
-
+  const handleMessageEdit = async() => {
+    if(current_user_id === message.senderId){
+      setMessageTobeEdited(message._id);
+      updateDialogRef.current.showModal();
+    }
+  }
   return (
     <div
+      onClick={handleMessageEdit}
       className={`chat ${
         current_user_id === message.receiverId ? "chat-start" : "chat-end"
       }`}

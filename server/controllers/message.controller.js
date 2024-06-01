@@ -95,7 +95,13 @@ export const updateMessage = async (req, res) => {
       { message },
       { new: true }
     );
-    res.json({ newMessage });
+    const receiverSocketID = getreceiverSocketID(receiverId);
+    const senderSocketID = getreceiverSocketID(senderId);
+    
+    io.to(receiverSocketID).emit("updatedmessage", newMessage)
+    io.to(senderSocketID).emit("updatedmessage", newMessage)
+    res.status(200).json(newMessage);
+
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -103,8 +109,14 @@ export const updateMessage = async (req, res) => {
 
 export const deleteMessage = async (req, res) => {
   try {
-    const { id: _id } =req.params
+    const { id: _id } = req.params
     const deletedMessage = await Message.findByIdAndDelete(_id)
+    const receiverSocketID = getreceiverSocketID(deletedMessage.receiverId);
+    const senderSocketID = getreceiverSocketID(deletedMessage.senderId);
+
+    io.to(receiverSocketID).emit("deletemessage", deletedMessage);
+    io.to(senderSocketID).emit("deletemessage", deletedMessage);
+    
     return res.json({
       deletedMessage
     })
