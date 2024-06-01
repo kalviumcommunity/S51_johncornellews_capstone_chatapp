@@ -7,12 +7,11 @@ import axios from "axios";
 
 const Profile = () => {
   const authUser = useStore((state) => state.authUser);
-  const setAuthUser = useStore().setAuthUser
+  const setAuthUser = useStore().setAuthUser;
   const modRef = useRef();
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm();
   const [newImage, setNewImage] = useState(null);
 

@@ -45,4 +45,9 @@ export const useStore = create((set) => ({
     set({
       filteredUsers: users,
     }),
+  messageTobeEdited: null,
+  setMessageTobeEdited: (id) => 
+      set({
+        messageTobeEdited: id,
+      })
 }));
