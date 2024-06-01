@@ -95,8 +95,8 @@ export const updateMessage = async (req, res) => {
       { message },
       { new: true }
     );
-    const receiverSocketID = getreceiverSocketID(receiverId);
-    const senderSocketID = getreceiverSocketID(senderId);
+    const receiverSocketID = getreceiverSocketID(newMessage.receiverId);
+    const senderSocketID = getreceiverSocketID(newMessage.senderId);
     
     io.to(receiverSocketID).emit("updatedmessage", newMessage)
     io.to(senderSocketID).emit("updatedmessage", newMessage)

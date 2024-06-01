@@ -13,7 +13,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: ["http://localhost:5173", "https://chat-app-john.netlify.app"], // Allowing only these origins to connect
-    methods: ["GET", "POST"], // Allowing only GET and POST methods for CORS
+    methods: ["GET", "POST", "DELETE", "PATCH"], // Allowing only GET and POST methods for CORS
   },
 });
 
