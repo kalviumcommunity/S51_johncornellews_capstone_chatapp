@@ -30,10 +30,6 @@ const Messages = () => {
         `http://localhost:7777/api/message/deletemsg/${messageTobeEdited.id}`,
         { withCredentials: true }
       );
-      const newMessages = messages.filter(
-        (message) => message._id !== messageTobeEdited.id
-      );
-      setMessages(newMessages);
       setMessageTobeEdited(null, null);
     } catch (error) {
       console.error("Error deleting message:", error.message);
@@ -54,13 +50,7 @@ const Messages = () => {
         { withCredentials: true }
       );
       console.log("Response from server:", res.data);
-      const updatedMessages = messages.map((msg) =>
-        msg._id === messageTobeEdited.id
-          ? { ...msg, message: data.message, updatedAt: new Date() }
-          : msg
-      );
-      setMessages(updatedMessages);
-      console.log("Updated message list:", updatedMessages);
+
       updateMessageRefModal.current.close();
     } catch (error) {
       console.error("Error updating message:", error.message);
