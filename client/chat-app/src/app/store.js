@@ -12,9 +12,10 @@ export const useStore = create((set) => ({
       selectedConversation: id,
     }),
   selectedUser: null,
-  setSelectedUser: (fullName) => set({
-    selectedUser: fullName,
-  }),
+  setSelectedUser: (fullName) =>
+    set({
+      selectedUser: fullName,
+    }),
   onlineUsers: [],
   setOnlineUsers: (users) =>
     set({
@@ -45,9 +46,9 @@ export const useStore = create((set) => ({
     set({
       filteredUsers: users,
     }),
-  messageTobeEdited: null,
-  setMessageTobeEdited: (id) => 
-      set({
-        messageTobeEdited: id,
-      })
+  messageTobeEdited: {},
+  setMessageTobeEdited: (id, message) =>
+    set({
+      messageTobeEdited: { id: id, message: message },
+    }),
 }));
