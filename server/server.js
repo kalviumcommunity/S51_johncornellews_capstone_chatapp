@@ -13,6 +13,7 @@ app.use(cookieParser());
 const allowedOrigins = [
   "http://localhost:5173",
   "https://chat-app-john.netlify.app",
+  "https://66753a8383621c45f7373aec--symphonious-swan-d56546.netlify.app",
 ];
 
 app.use(
