@@ -11,10 +11,10 @@ import { protectRoute } from "../middlewares/protectRoute.js";
 const msgRouter = express.Router();
 
 msgRouter.post("/send/:id", protectRoute, sendMessage);
-msgRouter.get("/get/:id", protectRoute, getMessages);
-msgRouter.get("/getlatestmsg/:id", protectRoute, getLatestMessages);
+msgRouter.post("/get/:id", protectRoute, getMessages);
+msgRouter.post("/getlatestmsg/:id", protectRoute, getLatestMessages);
 msgRouter.patch("/updatemsg/:id", protectRoute, updateMessage);
-msgRouter.delete("/deletemsg/:id", protectRoute, deleteMessage)
+msgRouter.patch("/deletemsg/:id", protectRoute, deleteMessage)
 
 
 export default msgRouter;

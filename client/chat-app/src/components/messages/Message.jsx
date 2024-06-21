@@ -12,11 +12,11 @@ const Message = ({ message, updateDialogRef }) => {
   const updatedAt = new Date(message.updatedAt);
 
   const displayTime = (date) => {
-    const diffInHours = Math.floor((new Date() - date) / (1000 * 60 * 60));
-    if (diffInHours < 3) {
+    // const diffInHours = Math.floor((new Date() - date) / (1000 * 60 * 60));
+    // if (diffInHours < 3) {
       return `${formatDistanceToNow(date, { addSuffix: true })}`;
-    }
-    return format(date, "PPpp");
+    // }
+    // return format(date, "PPpp");
   };
 
   const EditedLabel = ({ isEdited }) => {

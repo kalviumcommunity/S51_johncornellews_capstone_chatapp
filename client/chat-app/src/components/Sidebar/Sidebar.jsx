@@ -5,22 +5,27 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useStore } from "../../app/store";
 import Profile from "./Profile";
+import Cookies from "js-cookie";
 
 const Sidebar = () => {
   const users = useStore().users;
   const filteredUsers = useStore().filteredUsers;
   const setFilteredUsers = useStore().setFilteredUsers;
   const setUsers = useStore().setUsers;
-  const getUsers = async () => {
-    const res = await axios.get("http://localhost:7777/api/users/getusers", {
-      withCredentials: true,
-    });
-    setUsers(res.data);
-    setFilteredUsers(res.data);
-    console.log(res.data);
-  };
+
   useEffect(() => {
-    getUsers();
+    const getUsers = async () => {
+      const jwt = Cookies.get("jwt");
+      const res = await axios.post(
+        "http://localhost:7777/api/users/getusers",
+        { jwt },
+        { withCredentials: true }
+      );
+      setUsers(res.data);
+      setFilteredUsers(res.data);
+      console.log(res.data);
+    };
+    return () => getUsers();
   }, []);
 
   return (

@@ -5,6 +5,7 @@ import useGetMessages from "../../hooks/useGetMessages";
 import { useListenMessages } from "../../hooks/useListenMessages";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import Cookies from "js-cookie";
 
 const Messages = () => {
   const selectedConversation = useStore((state) => state.selectedConversation);
@@ -23,11 +24,12 @@ const Messages = () => {
     reset,
     formState: { errors },
   } = useForm();
-
+  const jwt = Cookies.get("jwt");
   const deleteMessage = async () => {
     try {
-      const res = await axios.delete(
+      const res = await axios.post(
         `http://localhost:7777/api/message/deletemsg/${messageTobeEdited.id}`,
+        { jwt },
         { withCredentials: true }
       );
       setMessageTobeEdited(null, null);

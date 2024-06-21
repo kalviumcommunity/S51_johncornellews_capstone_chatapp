@@ -36,7 +36,7 @@ const Home = () => {
   useEffect(() => {
     const setLatestMessages = async () => {
       try {
-        const res = await axios.get(
+        const res = await axios.post(
           `http://localhost:7777/api/message/getlatestmsg/${authUser._id}`,
           { withCredentials: true }
         );
