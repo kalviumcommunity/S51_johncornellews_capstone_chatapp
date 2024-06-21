@@ -61,7 +61,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="flex font-mono">
+      <div className="flex font-mono bg-rose-100 p-7 rounded-box w-[60vw]">
         <Sidebar />
         <div className="divider-vertical m-0 p-0" />
         {!selectedConversation ? (

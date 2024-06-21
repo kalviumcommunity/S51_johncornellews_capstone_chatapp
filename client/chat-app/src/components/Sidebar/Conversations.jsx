@@ -10,7 +10,11 @@ const Conversations = () => {
       {users == "No User Found" ? (
         <h1>No user Found</h1>
       ) : users ? (
-        users.map((user) => <Conversation key={user._id} user={user} />)
+        <div className="max-h-[20vw] overflow-y-scroll scrollbar-thin scrollbar-webkit">
+          {users.map((user) => (
+            <Conversation key={user._id} user={user} />
+          ))}
+        </div>
       ) : (
         <>
           <ChatSkeleton />
