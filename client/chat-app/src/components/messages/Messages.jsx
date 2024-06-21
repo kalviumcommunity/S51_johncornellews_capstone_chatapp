@@ -47,8 +47,8 @@ const Messages = () => {
     try {
       console.log("Updating message with data:", data);
       const res = await axios.patch(
-        `http://localhost:7777/api/message/updatemsg/${messageTobeEdited.id}`,
-        { message: data.message },
+        `https://s51-johncornellews-capstone-chatapp.onrender.com/api/message/updatemsg/${messageTobeEdited.id}`,
+        { message: data.message, jwt },
         { withCredentials: true }
       );
       console.log("Response from server:", res.data);

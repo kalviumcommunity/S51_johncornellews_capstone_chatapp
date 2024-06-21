@@ -1,5 +1,6 @@
 {
   "name": "chat-app",
+  "proxy": "https://s51-johncornellews-capstone-chatapp.onrender.com/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
