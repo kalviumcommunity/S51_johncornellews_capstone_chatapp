@@ -12,7 +12,7 @@ const port = process.env.PORT || 777;
 app.use(cookieParser());
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://chat-app-john.netlify.app/",
+  "https://chat-app-john.netlify.app",
 ];
 
 app.use(
