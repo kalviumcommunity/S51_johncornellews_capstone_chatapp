@@ -27,8 +27,8 @@ const Messages = () => {
   const jwt = Cookies.get("jwt");
   const deleteMessage = async () => {
     try {
-      const res = await axios.post(
-        `http://localhost:7777/api/message/deletemsg/${messageTobeEdited.id}`,
+      const res = await axios.patch(
+        `https://s51-johncornellews-capstone-chatapp.onrender.com/api/message/deletemsg/${messageTobeEdited.id}`,
         { jwt },
         { withCredentials: true }
       );

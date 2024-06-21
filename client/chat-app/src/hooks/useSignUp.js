@@ -5,7 +5,8 @@ import { useStore } from "../app/store.js";
 import { useNavigate } from "react-router-dom";
 
 const useSignUp = () => {
-  const url = "http://localhost:7777/api/auth/signup";
+  const url =
+    "https://s51-johncornellews-capstone-chatapp.onrender.com/api/auth/signup";
   const [loading, setLoading] = useState(false);
   const setAuthUser = useStore().setAuthUser;
   const nav = useNavigate()

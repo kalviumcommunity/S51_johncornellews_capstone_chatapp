@@ -32,7 +32,7 @@ const Profile = () => {
     }
     try {
       const res = await axios.post(
-        "http://localhost:7777/api/users/updateuser",
+        "https://s51-johncornellews-capstone-chatapp.onrender.com/api/users/updateuser",
         { data },
         { withCredentials: true }
       );

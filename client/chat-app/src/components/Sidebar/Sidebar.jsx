@@ -17,7 +17,7 @@ const Sidebar = () => {
     const getUsers = async () => {
       const jwt = Cookies.get("jwt");
       const res = await axios.post(
-        "http://localhost:7777/api/users/getusers",
+        "https://s51-johncornellews-capstone-chatapp.onrender.com/api/users/getusers",
         { jwt },
         { withCredentials: true }
       );

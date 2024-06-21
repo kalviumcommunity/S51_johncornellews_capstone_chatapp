@@ -11,9 +11,9 @@ const useSendMessage = () => {
     setLoading(true); 
     try {
       const res = await axios.post(
-        `http://localhost:7777/api/message/send/${selectedConversation}`,
-        { message, jwt }, 
-        // { withCredentials: true }
+        `https://s51-johncornellews-capstone-chatapp.onrender.com/api/message/send/${selectedConversation}`,
+        { message, jwt },
+        { withCredentials: true }
       );
       console.log("working");
       console.log(res);

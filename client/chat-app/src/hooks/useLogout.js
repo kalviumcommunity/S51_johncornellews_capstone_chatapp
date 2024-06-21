@@ -5,7 +5,8 @@ import Cookies from "js-cookie"
 import { useNavigate } from "react-router-dom";
 
 const useLogout = () => {
-  const url = "http://localhost:7777/api/auth/logout";
+  const url =
+    "https://s51-johncornellews-capstone-chatapp.onrender.com/api/auth/logout";
   const [loading, setLoading] = useState(false);
   const nav = useNavigate()
   const logout = async () => {

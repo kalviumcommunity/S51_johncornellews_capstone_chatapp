@@ -15,12 +15,6 @@ const Conversation = ({ user }) => {
   const isOnline = onlineUsers.includes(user._id);
   const selectedConversation = useStore().selectedConversation;
 
-  useEffect(() => {
-    // Fetch the latest message for this user from state
-    // const latestMessage = latestMessages[user._id];
-    console.log(latestMessages);
-    // Do something with latestMessage if needed
-  }, [latestMessages, user._id]);
 
   return (
     <>
