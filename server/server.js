@@ -18,15 +18,6 @@ const port = process.env.PORT || 777;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve static files
-app.use(express.static(path.join(__dirname, "dist")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
-
-app.use(cookieParser());
-
 const allowedOrigins = [
   "http://localhost:5173",
   "https://s51-johncornellews-capstone-chatapp.onrender.com",
@@ -47,6 +38,16 @@ app.use(
     methods: "GET,POST,PATCH,DELETE",
   })
 );
+
+
+// Serve static files
+app.use(express.static(path.join(__dirname, "dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
+
+app.use(cookieParser());
 
 app.use(express.json());
 
