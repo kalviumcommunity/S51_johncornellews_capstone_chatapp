@@ -13,6 +13,9 @@ import { app, server } from "./socket/socket.js";
 dotenv.config();
 
 const port = process.env.PORT || 777;
+app.use(cookieParser());
+
+app.use(express.json());
 
 // Get __dirname equivalent in ES module
 const __filename = fileURLToPath(import.meta.url);
@@ -46,10 +49,6 @@ app.use(express.static(path.join(__dirname, "dist")));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
-
-app.use(cookieParser());
-
-app.use(express.json());
 
 app.use("/api/auth", authRouter);
 app.use("/api/message", msgRouter);
