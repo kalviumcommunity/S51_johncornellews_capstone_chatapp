@@ -26,6 +26,16 @@ const __dirname = path.dirname(__filename);
 // Serve static files
 app.use(express.static(path.join(__dirname, "dist")));
 
+app.use((req, res, next) => {
+  // allow different IP address
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  // allow different header field 
+  res.header('Access-Control-Allow-Headers', '*');
+  res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, OPTIONS');
+
+  next();
+});
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
