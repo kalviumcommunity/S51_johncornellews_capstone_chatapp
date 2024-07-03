@@ -12,6 +12,13 @@ const Sidebar = () => {
   const filteredUsers = useStore().filteredUsers;
   const setFilteredUsers = useStore().setFilteredUsers;
   const setUsers = useStore().setUsers;
+  let headers = new Headers();
+
+  headers.append('Content-Type', 'application/json');
+  headers.append('Accept', 'application/json');
+
+  headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+  headers.append('Access-Control-Allow-Credentials', 'true');
 
   useEffect(() => {
     const getUsers = async () => {
@@ -19,7 +26,7 @@ const Sidebar = () => {
       const res = await axios.post(
         "https://s51-johncornellews-capstone-chatapp.onrender.com/api/users/getusers",
         { jwt },
-        { withCredentials: true }
+        { withCredentials: true, headers: headers }
       );
       setUsers(res.data);
       setFilteredUsers(res.data);

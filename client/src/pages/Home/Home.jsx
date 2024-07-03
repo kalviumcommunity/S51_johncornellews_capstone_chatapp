@@ -37,13 +37,22 @@ const Home = () => {
     console.log(authUser, "authuser");
     return () => runner();
   }, [authUser]);
+
+  let headers = new Headers();
+
+  headers.append('Content-Type', 'application/json');
+  headers.append('Accept', 'application/json');
+
+  headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+  headers.append('Access-Control-Allow-Credentials', 'true');
+
   useEffect(() => {
     const setLatestMessages = async () => {
       try {
         const res = await axios.post(
           `https://s51-johncornellews-capstone-chatapp.onrender.com/api/message/getlatestmsg/${authUser._id}`,
           { jwt },
-          { withCredentials: true }
+          { withCredentials: true, headers: headers }
         );  
         res.data.forEach((message) => {
           const id =
