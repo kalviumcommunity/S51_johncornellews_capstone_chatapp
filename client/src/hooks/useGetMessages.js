@@ -14,8 +14,9 @@ const useGetMessages = () => {
       const res = await axios.post(
         `https://s51-johncornellews-capstone-chatapp.onrender.com/api/message/get/${selectedConversation}`,
         { jwt },
-        { withCredentials: true, headers: {
-          "Content-Type": "application/json"
+        { headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
         } }
       );
       console.log(res.data);

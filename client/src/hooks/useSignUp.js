@@ -15,7 +15,9 @@ const useSignUp = () => {
     try {
       const res = await axios.post(url, data, {
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
+
         }
       });
       const token = res.data.token;

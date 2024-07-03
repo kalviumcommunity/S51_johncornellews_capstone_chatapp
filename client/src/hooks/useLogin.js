@@ -14,9 +14,10 @@ const useLogin = () => {
     setLoading(true);
     try {
       const res = await axios.post(url, data, {
-        withCredentials: true,
+       
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
         }
       } );
       const token = res.data.token;

@@ -44,8 +44,9 @@ const Home = () => {
         const res = await axios.post(
           `https://s51-johncornellews-capstone-chatapp.onrender.com/api/message/getlatestmsg/${authUser._id}`,
           { jwt },
-          { withCredentials: true, headers: {
-            "Content-Type": "application/json"
+          { headers: {
+            "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
           } }
         );  
         res.data.forEach((message) => {

@@ -20,8 +20,9 @@ const Sidebar = () => {
       const res = await axios.post(
         "https://s51-johncornellews-capstone-chatapp.onrender.com/api/users/getusers",
         { jwt },
-        { withCredentials: true, headers: {
-          "Content-Type": "application/json"
+        { headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
         } }
       );
       setUsers(res.data);
