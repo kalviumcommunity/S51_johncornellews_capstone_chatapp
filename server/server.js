@@ -13,6 +13,7 @@ import { app, server } from "./socket/socket.js";
 dotenv.config();
 
 const port = process.env.PORT || 777;
+app.use(cors())
 app.use(cookieParser());
 
 app.use(express.json());
@@ -20,27 +21,6 @@ app.use(express.json());
 // Get __dirname equivalent in ES module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://s51-johncornellews-capstone-chatapp.onrender.com",
-  "https://chat-app-john.netlify.app",
-];
-
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      // Check if the origin is in the allowed origins list
-      if (allowedOrigins.includes(origin) || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
-    methods: "GET,POST,PATCH,DELETE",
-  })
-);
 
 
 // Serve static files
