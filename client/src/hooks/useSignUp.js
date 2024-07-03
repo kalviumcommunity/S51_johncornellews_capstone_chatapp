@@ -13,7 +13,11 @@ const useSignUp = () => {
   const signup = async (data) => {
     setLoading(true);
     try {
-      const res = await axios.post(url, data);
+      const res = await axios.post(url, data, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
       const token = res.data.token;
 
       // Set token in cookies
